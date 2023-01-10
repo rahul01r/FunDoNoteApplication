@@ -36,5 +36,27 @@ namespace FunDoNoteApplicaton.Controllers
                 throw;
             }
         }
+        [HttpPost]
+        [Route("UserLogin")]
+        public IActionResult Login(UserLogin userLogin)
+        {
+            try
+            {
+                var result = userBl.Login(userLogin);
+                if (result == "Login Sucessful")
+                {
+                    return this.Ok(new { success = true, message = "Registration Successfull!", data = result });
+                }
+                else
+                {
+                    return this.NotFound(new { success = false, message = "Registration Unsuccessfull!" });
+                }
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
