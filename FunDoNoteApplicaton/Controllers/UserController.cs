@@ -43,7 +43,7 @@ namespace FunDoNoteApplicaton.Controllers
             try
             {
                 var result = userBl.Login(userLogin);
-                if (result == "Login Sucessful")
+                if (result != null)
                 {
                     return this.Ok(new { success = true, message = "Registration Successfull!", data = result });
                 }
