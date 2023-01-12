@@ -58,5 +58,28 @@ namespace FunDoNoteApplicaton.Controllers
                 throw;
             }
         }
+        [HttpPost]
+        [Route("ForgetPassword")]
+        public IActionResult ForgetPassword(string email)
+        {
+            try
+            {
+                var result = userBl.ForgetPassword(email);
+                if (result != null)
+                {
+                    return this.Ok(new { success = true, message = "Mail Send Sucessfully", data = result });
+                }
+                else
+                {
+                    return this.NotFound(new { success = false, message = "Mail Sent Unsucessfully" });
+                }
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

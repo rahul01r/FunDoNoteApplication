@@ -91,6 +91,29 @@ namespace RepoLayer.Service
             return tokenHandler.WriteToken(token);
 
         }
+        public string ForgetPassword(string email)
+        {
+            try
+            {
+                var result = funDo.UserTable.Where(x => x.Email == email).FirstOrDefault();
+                if(result != null)
+                {
+                    var token = GenerateSecurityToken(result.Email, result.UserId);
+                    MSMQModel mq = new MSMQModel();
+                    mq.sendData2Queue(token);
+                    return token;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
 
