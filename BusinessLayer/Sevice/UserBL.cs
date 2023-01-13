@@ -4,6 +4,7 @@ using RepoLayer.Entities;
 using RepoLayer.Interface;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Text;
 
 namespace BusinessLayer.Sevice
@@ -46,6 +47,21 @@ namespace BusinessLayer.Sevice
             try
             {
                 return userrl.ForgetPassword(email);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public bool ResetPassword(string Email, string New_Password, string Confirm_password)
+        {
+            try
+            {
+               
+                return userrl.ResetPassword(Email, New_Password, Confirm_password); 
+                
             }
             catch (Exception)
             {

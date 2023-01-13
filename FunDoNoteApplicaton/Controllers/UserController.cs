@@ -1,7 +1,9 @@
 ﻿using BusinessLayer.Interface;
 using CommonLayer.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FunDoNoteApplicaton.Controllers
 {
@@ -13,6 +15,7 @@ namespace FunDoNoteApplicaton.Controllers
         public UserController(IUserBL userBl)
         {
             this.userBl = userBl;
+
         }
         [HttpPost]
         [Route("UserRegistration")]
@@ -72,6 +75,32 @@ namespace FunDoNoteApplicaton.Controllers
                 else
                 {
                     return this.NotFound(new { success = false, message = "Mail Sent Unsucessfully" });
+                }
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpPut]
+        [Authorize]
+        [Route("ResetPassword")]
+        public IActionResult ResetPassword(string New_Password, string Confirm_password)
+        {
+            try
+            {
+                var email = User.FindFirst(ClaimTypes.Email).Value.ToString();
+                var result = userBl.ResetPassword(email, New_Password, Confirm_password);
+                if (result == true)
+                {
+
+                    return this.Ok(new { success = true, message = "Reset password Sucessfully", data = result });
+                }
+                else
+                {
+                    return this.NotFound(new { success = false, message = "Reset Password Failed" });
+
                 }
             }
             catch (System.Exception)

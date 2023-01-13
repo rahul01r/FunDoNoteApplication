@@ -114,6 +114,28 @@ namespace RepoLayer.Service
                 throw;
             }
         }
+        public bool ResetPassword(string Email, string New_Password,string Confirm_password)
+        {
+            try
+            {
+                if(New_Password == Confirm_password)
+                {
+                    var result = funDo.UserTable.Where(x => x.Email == Email).FirstOrDefault();
+                    result.PassWord = New_Password;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
 
