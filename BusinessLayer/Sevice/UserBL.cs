@@ -16,6 +16,18 @@ namespace BusinessLayer.Sevice
         {
             this.userrl = userrl;   
         }
+        public UserEntity RegisterUser(UserRegistration userRegistration)
+        {
+            try
+            {
+                return userrl.RegisterUser(userRegistration);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         public string Login(UserLogin userLogin)
         {
@@ -30,18 +42,7 @@ namespace BusinessLayer.Sevice
             }
         }
 
-        public UserEntity RegisterUser(UserRegistration userRegistration)
-        {
-            try
-            {
-                return userrl.RegisterUser(userRegistration);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
+      
         public string ForgetPassword(string email)
         {
             try

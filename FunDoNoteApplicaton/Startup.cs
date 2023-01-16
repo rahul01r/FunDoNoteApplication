@@ -60,20 +60,20 @@ namespace FunDoNoteApplicaton
                     BearerFormat = "JWT",
                     Scheme = "bearer"
                 });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-            {
-                  new OpenApiSecurityScheme
-                  {
-                   Reference = new OpenApiReference
-                   {
-                    Type=ReferenceType.SecurityScheme,
-                    Id="Bearer"
-                  }
-                   },
-                  new string[]{}
-                }
-                });
+                  c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                  { 
+              {
+                     new OpenApiSecurityScheme
+                     {
+                         Reference = new OpenApiReference
+                         {
+                            Type=ReferenceType.SecurityScheme,
+                            Id="Bearer"
+                         }
+                     },
+                       new string[]{}
+              }
+                  });
 
             });
                 services.AddAuthentication(options =>

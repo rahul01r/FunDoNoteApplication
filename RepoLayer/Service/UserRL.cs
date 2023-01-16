@@ -13,6 +13,7 @@ using System.Text;
 
 namespace RepoLayer.Service
 {
+    
     public class UserRL: IUserRL
     {
         FunDoContext funDo;
@@ -122,6 +123,7 @@ namespace RepoLayer.Service
                 {
                     var result = funDo.UserTable.Where(x => x.Email == Email).FirstOrDefault();
                     result.PassWord = New_Password;
+                    funDo.SaveChanges();
                     return true;
                 }
                 else
