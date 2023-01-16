@@ -8,6 +8,6 @@ namespace RepoLayer.Interface
 {
     public interface INoteRL
     {
-        public NoteEntity CreateNotes(NoteRegistration createNoteModel);
+        public NoteEntity CreateNotes(NoteRegistration createNoteModel, long userId);
     }
 }

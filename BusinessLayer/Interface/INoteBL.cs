@@ -8,6 +8,6 @@ namespace BusinessLayer.Interface
 {
     public interface INoteBL
     {
-        public NoteEntity CreateNotes(NoteRegistration createNoteModel);
+        public NoteEntity CreateNotes(NoteRegistration createNoteModel, long userId);
     }
 }

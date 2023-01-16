@@ -15,11 +15,11 @@ namespace BusinessLayer.Sevice
         {
             this.inoteRL = inoteRL;
         }
-        public NoteEntity CreateNotes(NoteRegistration createNoteModel)
+        public NoteEntity CreateNotes(NoteRegistration createNoteModel, long userId)
         {
             try
             {
-                return inoteRL.CreateNotes(createNoteModel);
+                return inoteRL.CreateNotes(createNoteModel,userId);
 
             }
             catch (Exception)

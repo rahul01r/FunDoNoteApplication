@@ -11,17 +11,17 @@ namespace RepoLayer.Service
 {
     public class NoteRL:INoteRL
     {
-        private readonly FunDoContext fundoContext;
-        private readonly IConfiguration iconfiguration;
+        FunDoContext fundoContext;
+       //private readonly IConfiguration iconfiguration;
 
-        public NoteRL(FunDoContext fundooContext, IConfiguration iconfiguration)
+        public NoteRL(FunDoContext fundoContext)
         {
-            this.fundoContext = fundooContext;
-            this.iconfiguration = iconfiguration;
+            this.fundoContext = fundoContext;
+           // this.iconfiguration = iconfiguration;
 
         }
 
-        public NoteEntity CreateNotes(NoteRegistration createNoteModel)
+        public NoteEntity CreateNotes(NoteRegistration createNoteModel,long userId)
         {
             try
             {
@@ -37,13 +37,14 @@ namespace RepoLayer.Service
                 notesEntity.Edited = createNoteModel.Edited;
                 notesEntity.Created = createNoteModel.Created;
                 notesEntity.Pin = createNoteModel.Pin;
+                notesEntity.UserId = userId;
 
                 //add to table
                 fundoContext.NotesTable.Add(notesEntity);
                 //upload database
                 int result = fundoContext.SaveChanges();
 
-                if (result != 0)
+                if (result > 0)
                 {
                     return notesEntity;
                 }
@@ -59,7 +60,7 @@ namespace RepoLayer.Service
             }
         }
 
-
+       
     }
 }
 
