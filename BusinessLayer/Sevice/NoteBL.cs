@@ -88,5 +88,17 @@ namespace BusinessLayer.Sevice
                 throw;
             }
         }
+        public bool Archive(long NoteId)
+        {
+            try
+            {
+                return this.inoteRL.Archive(NoteId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

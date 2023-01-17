@@ -181,6 +181,32 @@ namespace RepoLayer.Service
                 throw;
             }
         }
+        public bool Archive(long NoteId)
+        {
+            try
+            {
+                var result = fundoContext.NotesTable.FirstOrDefault(e => e.NoteID == NoteId);
+
+                if (result.Archive == true)
+                {
+                    result.Archive = false;
+                    fundoContext.SaveChanges();
+
+                    return false;
+                }
+                else
+                {
+                    result.Archive = true;
+                    fundoContext.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
 

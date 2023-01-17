@@ -151,6 +151,28 @@ namespace FunDoNoteApplicaton.Controllers
                 throw;
             }
         }
+        [HttpPost]
+        [Route("Archive")]
+        public IActionResult Archive(long noteId)
+        {
+            try
+            {
+                // long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                var result = inoteBL.Archive(noteId);
+                if (result != null)
+                {
+                    return Ok(new { success = true, message = "Note is in Archive", data = result });
+                }
+                else
+                {
+                    return BadRequest(new { success = false, message = "Something went wrong" });
+                }
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
     }
 }
 
