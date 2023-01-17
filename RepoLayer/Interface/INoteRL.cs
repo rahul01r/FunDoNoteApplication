@@ -13,5 +13,6 @@ namespace RepoLayer.Interface
         public bool UpdateNotes(long noteId, long userId, NoteRegistration createNoteModel);
         public bool DeleteNotes(long noteId, long userId);
         public bool PinNote(long NoteId);
+        public bool Trash(long NoteId);
     }
 }
