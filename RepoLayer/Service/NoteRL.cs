@@ -5,6 +5,7 @@ using RepoLayer.Entities;
 using RepoLayer.Interface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace RepoLayer.Service
@@ -59,8 +60,20 @@ namespace RepoLayer.Service
                 throw;
             }
         }
+        public IEnumerable<NoteEntity> RetrieveNotes(long userId, long noteId)
+        {
+            try
+            {
+                var result = fundoContext.NotesTable.Where(e => e.UserId == userId && e.NoteID == noteId);
 
-       
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
     }
 }
 
