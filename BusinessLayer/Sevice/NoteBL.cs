@@ -63,5 +63,18 @@ namespace BusinessLayer.Sevice
                 throw;
             }
         }
+        public bool PinNote(long NoteId)
+        {
+            try
+            {
+                return this.inoteRL.PinNote(NoteId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
     }
 }

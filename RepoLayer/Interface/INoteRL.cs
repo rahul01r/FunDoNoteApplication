@@ -12,5 +12,6 @@ namespace RepoLayer.Interface
         public IEnumerable<NoteEntity> RetrieveNotes(long userId, long noteId);
         public bool UpdateNotes(long noteId, long userId, NoteRegistration createNoteModel);
         public bool DeleteNotes(long noteId, long userId);
+        public bool PinNote(long NoteId);
     }
 }

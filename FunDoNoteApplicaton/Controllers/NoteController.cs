@@ -107,6 +107,28 @@ namespace FunDoNoteApplicaton.Controllers
                 throw;
             }
         }
+        [HttpPut]
+        [Route("Pin")]
+        public IActionResult PinNote(long noteId)
+        {
+            try
+            {
+                // long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "userId").Value);
+                var result = inoteBL.PinNote(noteId);
+                if (result != null)
+                {
+                    return Ok(new { success = true, message = "Pinned Successfully", data = result });
+                }
+                else
+                {
+                    return BadRequest(new { success = false, message = "UnPinned." });
+                }
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
     }
 }
 

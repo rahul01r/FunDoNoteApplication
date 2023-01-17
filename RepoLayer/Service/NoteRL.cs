@@ -129,6 +129,32 @@ namespace RepoLayer.Service
                 throw;
             }
         }
+        public bool PinNote(long NoteId)
+        {
+            try
+            {
+                var result = fundoContext.NotesTable.FirstOrDefault(e => e.NoteID == NoteId);
+
+                if (result.Pin == true)
+                {
+                    result.Pin = false;
+                    fundoContext.SaveChanges();
+
+                    return false;
+                }
+                else
+                {
+                    result.Pin = true;
+                    fundoContext.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
 
