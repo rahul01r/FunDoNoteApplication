@@ -41,5 +41,16 @@ namespace BusinessLayer.Sevice
                 throw;
             }
         }
+        public bool UpdateNotes(long noteId, long userId, NoteRegistration createNoteModel)
+        {
+            try
+            {
+                return this.inoteRL.UpdateNotes(noteId, userId, createNoteModel);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

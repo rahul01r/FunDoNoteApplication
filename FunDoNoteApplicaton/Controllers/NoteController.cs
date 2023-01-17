@@ -63,6 +63,28 @@ namespace FunDoNoteApplicaton.Controllers
                 throw;
             }
         }
+        [HttpPut]
+        [Route("Update")]
+        public IActionResult UpdateNotes(long noteId, NoteRegistration createNoteModel)
+        {
+            try
+            {
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "userId").Value);
+                var result = inoteBL.UpdateNotes(noteId, userId, createNoteModel);
+                if (result != null)
+                {
+                    return Ok(new { success = true, message = "Updated Successfully", data = result });
+                }
+                else
+                {
+                    return BadRequest(new { success = false, message = "Not get updated try again." });
+                }
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
     }
 }
 
