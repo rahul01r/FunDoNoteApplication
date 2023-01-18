@@ -198,6 +198,30 @@ namespace FunDoNoteApplicaton.Controllers
                 throw;
             }
         }
+        [Authorize]
+        [HttpPost]
+        [Route("Image")]
+        public IActionResult UploadImage(IFormFile image, long noteId)
+        {
+            try
+            {
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "userId").Value);
+                var result = inoteBL.UploadImage(image,noteId, userId);
+                if (result != null)
+                {
+                    return Ok(new { success = true, message = "Image Upload Sucessfully", data = result });
+                }
+                else
+                {
+                    return BadRequest(new { success = false, message = "Something went wrong." });
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
 

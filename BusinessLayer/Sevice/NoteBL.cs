@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Interface;
 using CommonLayer.Model;
+using Microsoft.AspNetCore.Http;
 using RepoLayer.Entities;
 using RepoLayer.Interface;
 using System;
@@ -105,6 +106,18 @@ namespace BusinessLayer.Sevice
             try
             {
                 return this.inoteRL.BackgroundColor(colorModel, UserId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public string UploadImage(IFormFile image, long noteId, long userId)
+        {
+            try
+            {
+                return this.inoteRL.UploadImage(image, noteId, userId); 
             }
             catch (Exception)
             {
