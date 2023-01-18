@@ -207,6 +207,34 @@ namespace RepoLayer.Service
                 throw;
             }
         }
+        public NoteEntity BackgroundColor(ColorModel colorModel, long UserId )
+        {
+            try
+            {
+                var result = fundoContext.NotesTable.FirstOrDefault(e => e.NoteID ==colorModel.NoteID && e.UserId == UserId);
+
+                if (result.Color != null)
+                {
+                    result.Color = colorModel.Color;
+                    //fundooContext.NotesTable.Remove(result);
+                    fundoContext.SaveChanges();
+
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
+
 }
+
+
 

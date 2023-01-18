@@ -100,5 +100,17 @@ namespace BusinessLayer.Sevice
                 throw;
             }
         }
+        public NoteEntity BackgroundColor(ColorModel colorModel, long UserId)
+        {
+            try
+            {
+                return this.inoteRL.BackgroundColor(colorModel, UserId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

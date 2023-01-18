@@ -5,6 +5,8 @@ using System.Linq;
 using System;
 using CommonLayer.Model;
 using Microsoft.AspNetCore.Authorization;
+using RepoLayer.Entities;
+using System.Drawing;
 
 namespace FunDoNoteApplicaton.Controllers
 {
@@ -166,6 +168,29 @@ namespace FunDoNoteApplicaton.Controllers
                 else
                 {
                     return BadRequest(new { success = false, message = "Something went wrong" });
+                }
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+        [Authorize]
+        [HttpPost]
+        [Route("BGcolor")]
+        public IActionResult  BackgroundColor(ColorModel colorModel)
+        {
+            try
+            {
+                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "userId").Value);
+                var result = inoteBL.BackgroundColor(colorModel,userId);
+                if (result != null)
+                {
+                    return Ok(new { success = true, message = "Background color is changed", data = result });
+                }
+                else
+                {
+                    return BadRequest(new { success = false, message = "Something went wrong." });
                 }
             }
             catch (System.Exception)
