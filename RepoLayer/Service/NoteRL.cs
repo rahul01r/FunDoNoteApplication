@@ -12,7 +12,7 @@ using System.Text;
 
 namespace RepoLayer.Service
 {
-    public class NoteRL:INoteRL
+    public class NoteRL : INoteRL
     {
         FunDoContext fundoContext;
         IConfiguration configuration;
@@ -24,7 +24,7 @@ namespace RepoLayer.Service
 
         }
 
-        public NoteEntity CreateNotes(NoteRegistration createNoteModel,long userId)
+        public NoteEntity CreateNotes(NoteRegistration createNoteModel, long userId)
         {
             try
             {
@@ -209,11 +209,11 @@ namespace RepoLayer.Service
                 throw;
             }
         }
-        public NoteEntity BackgroundColor(ColorModel colorModel, long UserId )
+        public NoteEntity BackgroundColor(ColorModel colorModel, long UserId)
         {
             try
             {
-                var result = fundoContext.NotesTable.FirstOrDefault(e => e.NoteID ==colorModel.NoteID && e.UserId == UserId);
+                var result = fundoContext.NotesTable.FirstOrDefault(e => e.NoteID == colorModel.NoteID && e.UserId == UserId);
 
                 if (result.Color != null)
                 {
@@ -267,9 +267,7 @@ namespace RepoLayer.Service
                 throw;
             }
         }
-
     }
-
 }
 
 
