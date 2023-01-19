@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Interface;
+using RepoLayer.Entities;
 using RepoLayer.Interface;
 using System;
 using System.Collections.Generic;
@@ -25,5 +26,19 @@ namespace BusinessLayer.Sevice
                 throw;
             }
         }
+        public IEnumerable<LabelEntity> RetriveLabel(long labelId)
+        {
+            try
+            {
+                return this.ilabelRL.RetriveLabel(labelId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+       
+       
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
+using Microsoft.AspNetCore.Components;
 
 namespace FunDoNoteApplicaton.Controllers
 {
@@ -42,5 +43,32 @@ namespace FunDoNoteApplicaton.Controllers
                 throw;
             }
         }
+        [Authorize]
+        [HttpGet]
+        [Route("Retrive_Label")]
+        public IActionResult RetriveLabel(long labelId)
+        {
+            try
+            {
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "userId").Value);
+
+                var result = ilabelBL.RetriveLabel(labelId);
+
+                if (result != null)
+                {
+                    return Ok(new { success = true, mesage = "Label retrieved", data = result });
+                }
+                else
+                {
+                    return BadRequest(new { success = false, mesage = "Unable to retrieved Label." });
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+      
+       
     }
 }
