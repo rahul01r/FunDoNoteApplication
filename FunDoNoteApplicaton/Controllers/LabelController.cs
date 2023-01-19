@@ -75,8 +75,8 @@ namespace FunDoNoteApplicaton.Controllers
         [HttpPost]
         [Route("UpdateLabel")]
         public IActionResult UpdateLabel(UpdateLabel update)
-        {
-            try
+        {            try
+
             {
                 long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "userId").Value);
                 var result = ilabelBL.UpdateLabel(userId, update);
@@ -95,5 +95,30 @@ namespace FunDoNoteApplicaton.Controllers
                 throw;
             }
         }
+        [Authorize]
+        [HttpDelete]
+        [Route("Remove")]
+        public IActionResult DeleteLabel(long labelId)
+        {
+            try
+            {
+                var result = ilabelBL.DeleteLabel(labelId);
+
+                if (result == true)
+                {
+                    return Ok(new { success = true, mesage = "Label Deleted", data = result });
+                }
+                else
+                {
+                    return BadRequest(new { success = false, mesage = "Unable to Delete Label." });
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
     }
 }

@@ -51,5 +51,17 @@ namespace BusinessLayer.Sevice
                 throw;
             }
         }
+        public bool DeleteLabel(long labelId)
+        {
+            try
+            {
+                return this.ilabelRL.DeleteLabel(labelId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
