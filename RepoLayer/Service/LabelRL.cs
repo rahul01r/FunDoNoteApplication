@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CommonLayer.Model;
+using Microsoft.Extensions.Configuration;
 using RepoLayer.Context;
 using RepoLayer.Entities;
 using RepoLayer.Interface;
@@ -64,6 +65,28 @@ namespace RepoLayer.Service
                 throw;
             }
         }
-       
+        public bool UpdateLabel(long userId, UpdateLabel update)
+        {
+            try
+            {
+                var result = fundoContext.LabelTable.Where(e => e.UserId == userId && e.LabelName == update.OldLabelName).FirstOrDefault();
+                if (result != null)
+                {
+                    result.LabelName = update.NewLabelName;
+                    fundoContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
+

@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
 using Microsoft.AspNetCore.Components;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
+using BusinessLayer.Sevice;
+using CommonLayer.Model;
 
 namespace FunDoNoteApplicaton.Controllers
 {
@@ -68,7 +71,29 @@ namespace FunDoNoteApplicaton.Controllers
                 throw;
             }
         }
-      
-       
+        [Authorize]
+        [HttpPost]
+        [Route("UpdateLabel")]
+        public IActionResult UpdateLabel(UpdateLabel update)
+        {
+            try
+            {
+                long userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "userId").Value);
+                var result = ilabelBL.UpdateLabel(userId, update);
+                if (result == true)
+                {
+                    return this.Ok(new { success = true, message = "Label Updated SuccessFully", data = result });
+                }
+                else
+                {
+                    return this.BadRequest(new { success = false, message = "Label not updated !" });
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
