@@ -65,5 +65,29 @@ namespace FunDoNoteApplicaton.Controllers
                 throw;
             }
         }
+        [Authorize]
+        [HttpDelete]
+        [Route("Remove")]
+        public IActionResult  RemoveCollab(long collabId)
+        {
+            try
+            {
+                var result = icollabBL.RemoveCollab(collabId);
+                if(result == true)
+                {
+                    return Ok(new { success = true, mesage = "Collabrator Remove", data = result });
+                }
+                else
+                {
+                    return BadRequest(new { success = false, mesage = "Data Not Found." });
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
