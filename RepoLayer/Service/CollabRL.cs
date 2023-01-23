@@ -14,7 +14,7 @@ namespace RepoLayer.Service
         FunDoContext fundoContex;
         IConfiguration configuration;
 
-        public CollabRL(FunDoContext fundoContext, IConfiguration configuration)
+        public CollabRL(FunDoContext fundoContext,IConfiguration configuration)
         {
             this.fundoContex = fundoContext;
             this.configuration = configuration;
@@ -81,6 +81,6 @@ namespace RepoLayer.Service
             {
                 throw;
             }
-        }
+        }       
     }
 }
